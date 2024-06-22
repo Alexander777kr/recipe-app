@@ -2,7 +2,7 @@ import CardList from '../components/CardList';
 import Header from '../components/Header';
 
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const options = {
   method: 'GET',
@@ -18,13 +18,14 @@ const options = {
 };
 
 export default function HomePage() {
+  const [recipes, setRecipes] = useState([]);
   useEffect(() => {
     fetchRecipes();
   }, []);
   const fetchRecipes = async () => {
     try {
       const response = await axios.request(options);
-      console.log(response.data);
+      setRecipes(response.data.results);
     } catch (error) {
       console.error(error);
     }
@@ -32,7 +33,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <CardList />
+      <CardList recipes={recipes} />
     </>
   );
 }

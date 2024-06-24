@@ -3,7 +3,7 @@ import useFetchRecipe from '../hooks/useFetchRecipe';
 import { useEffect } from 'react';
 import RecipeHeader from '../components/RecipeHeader';
 import Loading from '../components/Loading';
-// import { recipes } from '../components/CardList';
+import RecipeInfo from '../components/RecipeInfo';
 
 export default function RecipePage() {
   const { id } = useParams();
@@ -12,8 +12,6 @@ export default function RecipePage() {
   useEffect(() => {
     fetchRecipe(id);
   }, []);
-
-  console.log({ data, loading, error });
 
   if (loading) {
     return <Loading />;
@@ -24,6 +22,16 @@ export default function RecipePage() {
   }
 
   return (
-    <div>{data && <RecipeHeader nutritionalFacts={data.nutrition} />}</div>
+    <div>
+      {data && (
+        <>
+          <RecipeHeader nutritionalFacts={data.nutrition} name={data.name} />
+          <RecipeInfo
+            instructions={data.instructions}
+            image={data.thumbnail_url}
+          />
+        </>
+      )}
+    </div>
   );
 }

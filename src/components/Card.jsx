@@ -4,7 +4,7 @@ export default function Card({ recipe }) {
   const { thumbnail_url, name, topics, total_time_minutes, id } = recipe;
   const navigate = useNavigate();
   const navigateToRecipePage = () => {
-    navigate(`/recipe/${id}`);
+    navigate(`/recipe/${id}/instructions`);
   };
   return (
     <div className="card" onClick={navigateToRecipePage}>

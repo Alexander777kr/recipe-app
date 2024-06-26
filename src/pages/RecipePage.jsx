@@ -34,6 +34,7 @@ export default function RecipePage() {
           <RecipeInfo
             instructions={data.instructions}
             image={data.thumbnail_url}
+            ingredients={data.sections[0].components}
           />
         </>
       )}

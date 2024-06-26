@@ -11,6 +11,8 @@ import RecipePage from './pages/RecipePage.jsx';
 import App from './App.jsx';
 import './index.css';
 import ErrorPage from './pages/ErrorPage.jsx';
+import Ingredients from './components/Ingredient.jsx';
+import Instructions from './components/Instruction.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,11 +20,8 @@ const router = createBrowserRouter(
       <Route path="/" element={<HomePage />} />
       <Route path="/about" element={<AboutPage />} />
       <Route path="/recipe/:id" element={<RecipePage />}>
-        <Route path="/recipe/:id/ingredients" element={<h1>Ingredients</h1>} />
-        <Route
-          path="/recipe/:id/instructions"
-          element={<h1>Instructions</h1>}
-        />
+        <Route path="/recipe/:id/ingredients" element={<Ingredients />} />
+        <Route path="/recipe/:id/instructions" element={<Instructions />} />
       </Route>
     </Route>
   )

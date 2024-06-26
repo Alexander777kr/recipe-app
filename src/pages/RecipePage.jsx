@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import RecipeHeader from '../components/RecipeHeader';
 import Loading from '../components/Loading';
 import RecipeInfo from '../components/RecipeInfo';
+import Error from '../components/Error';
 
 export default function RecipePage() {
   const { id } = useParams();
@@ -19,6 +20,10 @@ export default function RecipePage() {
 
   if (error) {
     return <h1>{error}</h1>;
+  }
+
+  if (data?.errors) {
+    return <Error explanation="Recipe not found" />;
   }
 
   return (
